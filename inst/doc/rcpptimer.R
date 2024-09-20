@@ -9,93 +9,98 @@ knitr::opts_chunk$set(
 Sys.setenv("OMP_THREAD_LIMIT" = 2)
 
 ## ----eval = TRUE--------------------------------------------------------------
-Rcpp::cppFunction('
-int mem()
+Rcpp::cppFunction("
+double add(double &x, double &y)
 {
-  Rcpp::Timer timer;
-  timer.tic("mem");
-  std::string s;
-  s.reserve(1048576);
-  timer.toc("mem");
-  return(0);
+ Rcpp::Timer timer;
+ timer.tic();
+ double z = x + y;
+ timer.toc();
+ return(z);
+}",
+  depends = "rcpptimer"
+)
+
+add(rnorm(1), runif(1))
+
+## ----eval = TRUE--------------------------------------------------------------
+print(times)
+
+## ----eval = TRUE--------------------------------------------------------------
+Rcpp::cppFunction('
+double add(double &x, double &y)
+{
+ Rcpp::Timer timer;
+ timer.tic("body");
+ timer.tic("add_1");
+ timer.tic("add_2");
+ double z = x + y;
+ timer.toc("add_1");
+ timer.toc("add_2");
+ timer.toc("body");
+ return(z);
 }',
   depends = "rcpptimer"
 )
 
-mem()
+add(rnorm(1), runif(1))
+
+print(times)
+
+## ----eval = TRUE--------------------------------------------------------------
+results <- rcpptimer::fibonacci_omp(n = rep(20:25, 10))
+print(times)
+
+## ----eval = TRUE--------------------------------------------------------------
+Rcpp::cppFunction('
+double add(double &x, double &y)
+{
+ Rcpp::Timer timer;
+ Rcpp::Timer::ScopedTimer scoped_timer(timer, "add");
+ double z = x + y;
+ return(z);
+}',
+  depends = "rcpptimer"
+)
+
+add(rnorm(1), runif(1))
 
 print(times)
 
 ## ----eval = TRUE--------------------------------------------------------------
 Rcpp::cppFunction('
-int mem()
+double add(double &x, double &y)
 {
-  Rcpp::Timer timer("mytimes");
-  timer.tic("mem");
-  std::string s;
-  s.reserve(1048576);
-  timer.toc("mem");
-  return(0);
+ Rcpp::Timer timer;
+ Rcpp::Timer::ScopedTimer scoped_timer(timer, "add");
+ timer.tic("add");
+ double z = x + y;
+ timer.toc("ad");
+ return(z);
 }',
   depends = "rcpptimer"
 )
 
-mem()
-
-print(mytimes)
+add(rnorm(1), runif(1))
 
 ## ----eval = TRUE--------------------------------------------------------------
-Rcpp::cppFunction('
-int mem()
-{
-  Rcpp::Timer timer;
-  timer.tic("start");
-  std::string s;
-  timer.tic("reserve");
-  s.reserve(1048576);
-  timer.toc("reserve");
-  timer.toc("finish");
-  return(0);
-}',
-  depends = "rcpptimer"
-)
-
-mem()
-
 print(times)
 
 ## ----eval = TRUE--------------------------------------------------------------
 Rcpp::cppFunction('
-int mem()
+double add(double &x, double &y)
 {
-  Rcpp::Timer timer(false); // Disable warnings
-  timer.tic("start");
-  std::string s;
-  timer.tic("reserve");
-  s.reserve(1048576);
-  timer.toc("reserve");
-  timer.toc("finish");
-  return(0);
+ Rcpp::Timer timer(false);
+ Rcpp::Timer::ScopedTimer scoped_timer(timer, "add");
+ timer.tic("add");
+ double z = x + y;
+ timer.toc("ad");
+ return(z);
 }',
   depends = "rcpptimer"
 )
 
-mem()
-
-## ----eval = TRUE--------------------------------------------------------------
-Rcpp::cppFunction('
-int mem()
-{
-  Rcpp::Timer timer;
-  Rcpp::Timer::ScopedTimer scoped_timer(timer, "mem");
-  std::string s;
-  s.reserve(1048576);
-  return(0);
-}',
-  depends = "rcpptimer"
-)
-
-mem()
+add(rnorm(1), runif(1))
 
 print(times)
 
