@@ -1,8 +1,8 @@
 Package: rcpptimer
 Type: Package
 Title: 'Rcpp' Tic-Toc Timer with 'OpenMP' Support
-Version: 1.2.0
-Date: 2024-09-19
+Version: 1.2.1
+Date: 2024-09-21
 Authors@R: c(
     person(given = "Jonathan",
              family = "Berrisch",
@@ -23,8 +23,8 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 Language: en-US
 NeedsCompilation: yes
-Packaged: 2024-09-19 13:17:46 UTC; vscode
+Packaged: 2024-09-21 21:54:54 UTC; vscode
 Author: Jonathan Berrisch [aut, cre] (<https://orcid.org/0000-0002-4944-9074>)
 Maintainer: Jonathan Berrisch <Jonathan@Berrisch.biz>
 Repository: CRAN
-Date/Publication: 2024-09-20 13:20:02 UTC
+Date/Publication: 2024-09-22 21:40:02 UTC

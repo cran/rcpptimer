@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jonathan Berrisch" />
 
-<meta name="date" content="2024-09-19" />
+<meta name="date" content="2024-09-21" />
 
 <title>Advanced Usage of rcpptimer</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Advanced Usage of rcpptimer</h1>
 <h4 class="author">Jonathan Berrisch</h4>
-<h4 class="date">2024-09-19</h4>
+<h4 class="date">2024-09-21</h4>
 
 
 
@@ -372,13 +372,13 @@ The snippet below demonstrates how to access them:</p>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="fu">demo_rnorm</span>()</span></code></pre></div>
 <pre><code>##   Durations  Tags
-## 1      8395 rnorm
-## 2       501 rnorm
-## 3       312 rnorm
-## 4       193 rnorm
-## 5       186 rnorm
-## 6       129 rnorm
-## 7       170 rnorm</code></pre>
+## 1      6767 rnorm
+## 2       205 rnorm
+## 3        89 rnorm
+## 4       162 rnorm
+## 5       149 rnorm
+## 6        88 rnorm
+## 7        86 rnorm</code></pre>
 <p>You can see that the <code>tags</code> vector contains the names of
 the timings, and the <code>durations</code> vector contains the actual
 timings (in nanoseconds).</p>
@@ -421,13 +421,13 @@ have been observed. The snippet below demonstrates this:</p>
 ## Use toc(&quot;t1&quot;) to stop the timer.</code></pre>
 <pre><code>## [[1]]
 ##    Microseconds SD    Min    Max Count
-## t2       56.544  0 56.544 56.544     1
+## t2       54.481  0 54.481 54.481     1
 ## 
 ## [[2]]
 ##    Microseconds    SD     Min     Max Count
-## t1      652.245 0.000 652.245 652.245     1
-## t2       55.662 1.247  54.780  56.544     2
-## t3       52.224 0.000  52.224  52.224     1</code></pre>
+## t1      572.870 0.000 572.870 572.870     1
+## t2       54.233 0.351  53.985  54.481     2
+## t3       52.186 0.000  52.186  52.186     1</code></pre>
 <p>You can see that the timer “t2” has been updated with the new timing.
 This example also shows that it is unnecessary to stop all timers before
 calling <code>.stop()</code>. In this example, timer “t1” is started
@@ -469,12 +469,12 @@ demonstrates how to use it:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>rcpptimer<span class="sc">:::</span><span class="fu">test_reset</span>()</span></code></pre></div>
 <pre><code>## [[1]]
 ##    Microseconds SD    Min    Max Count
-## t1       58.507  0 58.507 58.507     1
-## t2       57.031  0 57.031 57.031     1
+## t1       58.640  0 58.640 58.640     1
+## t2       57.427  0 57.427 57.427     1
 ## 
 ## [[2]]
 ##    Nanoseconds SD Min Max Count
-## t3         474  0 474 474     1</code></pre>
+## t3         530  0 530 530     1</code></pre>
 </div>
 
 
